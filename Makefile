@@ -114,17 +114,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named demo
+# Target rules for targets named posix_demo
 
 # Build rule for target.
-demo: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 demo
-.PHONY : demo
+posix_demo: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 posix_demo
+.PHONY : posix_demo
 
 # fast build rule for target.
-demo/fast:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/build
-.PHONY : demo/fast
+posix_demo/fast:
+	$(MAKE) -f CMakeFiles/posix_demo.dir/build.make CMakeFiles/posix_demo.dir/build
+.PHONY : posix_demo/fast
 
 #=============================================================================
 # Target rules for targets named freertos
@@ -5599,7 +5599,7 @@ console.o: console.c.o
 
 # target to build an object file
 console.c.o:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/console.c.o
+	$(MAKE) -f CMakeFiles/posix_demo.dir/build.make CMakeFiles/posix_demo.dir/console.c.o
 .PHONY : console.c.o
 
 console.i: console.c.i
@@ -5608,7 +5608,7 @@ console.i: console.c.i
 
 # target to preprocess a source file
 console.c.i:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/console.c.i
+	$(MAKE) -f CMakeFiles/posix_demo.dir/build.make CMakeFiles/posix_demo.dir/console.c.i
 .PHONY : console.c.i
 
 console.s: console.c.s
@@ -5617,7 +5617,7 @@ console.s: console.c.s
 
 # target to generate assembly for a file
 console.c.s:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/console.c.s
+	$(MAKE) -f CMakeFiles/posix_demo.dir/build.make CMakeFiles/posix_demo.dir/console.c.s
 .PHONY : console.c.s
 
 main.o: main.c.o
@@ -5626,7 +5626,7 @@ main.o: main.c.o
 
 # target to build an object file
 main.c.o:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/main.c.o
+	$(MAKE) -f CMakeFiles/posix_demo.dir/build.make CMakeFiles/posix_demo.dir/main.c.o
 .PHONY : main.c.o
 
 main.i: main.c.i
@@ -5635,7 +5635,7 @@ main.i: main.c.i
 
 # target to preprocess a source file
 main.c.i:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/main.c.i
+	$(MAKE) -f CMakeFiles/posix_demo.dir/build.make CMakeFiles/posix_demo.dir/main.c.i
 .PHONY : main.c.i
 
 main.s: main.c.s
@@ -5644,7 +5644,7 @@ main.s: main.c.s
 
 # target to generate assembly for a file
 main.c.s:
-	$(MAKE) -f CMakeFiles/demo.dir/build.make CMakeFiles/demo.dir/main.c.s
+	$(MAKE) -f CMakeFiles/posix_demo.dir/build.make CMakeFiles/posix_demo.dir/main.c.s
 .PHONY : main.c.s
 
 # Help Target
@@ -5655,7 +5655,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... demo"
+	@echo "... posix_demo"
 	@echo "... freertos"
 	@echo "... FreeRTOS/FreeRTOS/Source/croutine.o"
 	@echo "... FreeRTOS/FreeRTOS/Source/croutine.i"
