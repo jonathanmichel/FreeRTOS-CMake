@@ -11,6 +11,15 @@ The goal is to use the [Posix/Linux Simulator Demo for FreeRTOS](https://www.fre
 
 Tested on Ubuntu 18.04 Lts distribution with Windows WSL.
 
+## Project structure
+Project is a simple demo responsible to create two tasks communicating with queue and triggered by timers. It will print received messages in the console.
+- [main.c](main.c) contains application code
+- [console.h/c](console.h) are used to trace code by avoiding concurrency issues
+- [FreeRTOSConfig.h](FreeRTOSConfig.h) is need by FreeRTOS. It contains application specific definitions that are adjusted for a particular hardware and application requirements. This one comes from the [POSIX demo](https://github.com/FreeRTOS/FreeRTOS/blob/master/FreeRTOS/Demo/Posix_GCC/FreeRTOSConfig.h).
+- [Makefile](Makefile) used for direct compilation with Make
+- [CMakeLists.txt](CMakeLists.txt) used by CMake
+- [Makefile.back](Makefile.back) Backup of the manual [Makefile](Makefile)
+
 ## Running example with Make
 After cloning repository, ensure submodule (and sub-submodules) are correctly initialized and updated. 
 
@@ -60,7 +69,7 @@ FreeRTOS\Source\portable\
 └── IAR\ARM_CM33\secure\secure_context.h
 ```
 
-We could add a directory to include in CMakeLists.txt ([here](https://github.com/jonathanmichel/FreeRTOS-CMake/blob/167a5ac0153504d88c455072fb08df05f5c3fadd/CMakeLists.txt#L17)) by choosing a specific compiler and platform and re-run CMake. But it will result in other inclusion errors. 
+We could add a directory to include in CMakeLists.txt ([here](https://github.com/jonathanmichel/FreeRTOS-CMake/blob/167a5ac0153504d88c455072fb08df05f5c3fadd/CMakeLists.txt#L17)) by choosing a specific compiler and platform and re-run CMake. But it will result in other inclusions errors. 
 
-It means that current CMakeLists.txt don't do the exact same task as inital Makefile. Why ? :(
+It means that current CMakeLists.txt don't do the exact same task as inital Makefile. :(
 
