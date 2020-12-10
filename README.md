@@ -1,6 +1,6 @@
 # FreeRTOS-CMake
 
-This repository covers the replacement of Make used with FreeRTOS by CMake in order to integrate FreeRTOS into [FPrime](https://github.com/nasa/fprime) CMake compilation process.
+This repository covers the replacement of Make used with FreeRTOS by CMake.
 
 The goal is to use the [Posix/Linux Simulator Demo for FreeRTOS](https://www.freertos.org/FreeRTOS-simulator-for-Linux.html) in order to run FreeRTOS on Linux. This work is based on the [Posix GCC Demo](https://github.com/FreeRTOS/FreeRTOS/tree/master/FreeRTOS/Demo/Posix_GCC) of FreeRTOS. 
 
@@ -57,19 +57,15 @@ At this step, a new Makefile has been generated (a copy of the initial one is in
 ❯ make
 ```
 
-The compilation will fail with `fatal error: secure_context.h: No such file or directory` in [FreeRTOS/Source/portable/ARMv8M/non_secure/port.c:44](https://github.com/FreeRTOS/FreeRTOS-Kernel/blob/47338393f1f79558f6144213409f09f81d7c4837/portable/ARMv8M/non_secure/port.c#L44). 
-
-By checking FreeRTOS sources, we can find mutliple occurences for this specific file in :
+And run it with:
 ```
-FreeRTOS\Source\portable\
-├── ARMv8M\secure\context\secure_context.h
-├── GCC\ARM_CM23\secure\secure_context.h
-├── GCC\ARM_CM33\secure\secure_context.h
-├── IAR\ARM_CM23\secure\secure_context.h
-└── IAR\ARM_CM33\secure\secure_context.h
+❯ ./build/posix_demo
+Starting echo blinky demo
+Message received from task
+Message received from software timer
+Message received from task
+Message received from task
+Message received from software timer
+Message received from task
 ```
-
-We could add a directory to include in CMakeLists.txt ([here](https://github.com/jonathanmichel/FreeRTOS-CMake/blob/167a5ac0153504d88c455072fb08df05f5c3fadd/CMakeLists.txt#L17)) by choosing a specific compiler and platform and re-run CMake. But it will result in other inclusions errors. 
-
-It means that current CMakeLists.txt don't do the exact same task as inital Makefile. :(
 

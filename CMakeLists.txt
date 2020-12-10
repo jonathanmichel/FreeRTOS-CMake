@@ -7,7 +7,6 @@ project(posix_demo C)
 cmake_minimum_required(VERSION 3.5)
 
 # -> BUILD_DIR := build
-# Not working ...
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/build)
 
 # For debug, no change detected ...
@@ -34,7 +33,7 @@ include_directories(
 
 # -> SOURCE_FILES := $(wildcard *.c)
 # -> SOURCE_FILES += $(wildcard ${FREERTOS_DIR}/Source/*.c)
-FILE(GLOB_RECURSE FREERTOS_SOURCES
+FILE(GLOB FREERTOS_SOURCES
     ${FREERTOS_DIR}/Source/*.c
 )
 
@@ -49,11 +48,12 @@ list(APPEND FREERTOS_SOURCES "${FREERTOS_DIR}/Source/portable/ThirdParty/GCC/Pos
 list(APPEND FREERTOS_SOURCES "${FREERTOS_DIR}/Source/portable/ThirdParty/GCC/Posix/port.c")
 
 # -> CFLAGS := -ggdb3 -O0 -DprojCOVERAGE_TEST=0 -D_WINDOWS_
-# Could also use add_definitions(-DprojCOVERAGE_TEST=0)
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -ggdb3 -O0 -D_WINDOWS_ -DprojCOVERAGE_TEST=0")
+add_definitions(-DprojCOVERAGE_TEST=0)
+add_definitions(-D_WINDOWS_)
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -ggdb3 -O0")
 
 # -> LDFLAGS := -ggdb3 -O0 -pthread
-# Not sure of this one, pthread included after
+# pthread included after
 set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -ggdb3 -O0")
 
 # Debug
@@ -70,13 +70,8 @@ add_executable(${PROJECT_NAME}
 )
 
 # Link FreeRTOS as a static library
-# This step is problay false
 add_library(freertos STATIC ${FREERTOS_SOURCES})
 target_link_libraries(${PROJECT_NAME} freertos)
 
-# Add pthread, multiple way to do it
-# 1 - Add '-pthread' to CMAKE_SHARED_LINKER_FLAGS variable 
-# 2 - target_link_libraries(${PROJECT_NAME} pthread)
-# 3 - find_package
-find_package(Threads REQUIRED)
-set(FPRIME_USE_POSIX ON)
+## Add pthread
+target_link_libraries(${PROJECT_NAME} pthread)
